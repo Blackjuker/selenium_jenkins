@@ -10,12 +10,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/ton-repo/ton-projet.git'
-            }
-        }
-
+       
         stage('Install Dependencies') {
             steps {
                 sh 'mvn clean install -DskipTests'
