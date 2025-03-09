@@ -10,7 +10,11 @@ pipeline {
     }
 
     stages {
-       
+       stage('test maven'){
+            steps{
+                sh "mvn --version"
+            }
+       }
         stage('Install Dependencies') {
             steps {
                 sh 'mvn clean install -DskipTests'
