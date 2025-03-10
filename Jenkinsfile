@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        SELENIUM_GRID_URL = "http://selenium-hub:4444/wd/hub"
+        SELENIUM_GRID_URL = "http://172.18.0.4:4444/wd/hub"
     }
 
     stages {
