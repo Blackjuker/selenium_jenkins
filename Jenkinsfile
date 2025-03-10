@@ -5,9 +5,19 @@ pipeline {
         }
     }
 
+     parameters {
+        choice(
+            name: 'ENVIRONMENT',
+            choices: [
+                'test_env',
+                'prod'
+            ],
+            description: 'Choisir l’environnement Selenium Grid'
+        )
+    }
+
     environment {
-        SELENIUM_GRID_URL = "http://172.18.0.3:4444"
-        //SELENIUM_GRID_URL = "http://192.168.1.95:4444"
+        SELENIUM_GRID_URL = "${params.ENVIRONMENT == 'test_env' ? 'http://172.18.0.3:4444' : 'http://192.168.1.95:4444'}"
     }
 
     stages {
@@ -16,6 +26,15 @@ pipeline {
         //         git branch: 'main', url: 'https://github.com/ton-repo/ton-projet.git'
         //     }
         // }
+
+        stage('Afficher URL') {
+            steps {
+                script {
+                    echo "Environnement sélectionné : ${params.ENVIRONMENT}"
+                    echo "URL Selenium Grid utilisée : ${SELENIUM_GRID_URL}"
+                }
+            }
+        }
 
         stage('Install Dependencies') {
             steps {
