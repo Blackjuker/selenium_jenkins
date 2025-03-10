@@ -19,6 +19,10 @@ public class CheckOutOverviewTest extends BaseTest{
     ClientInformationPage clientInformationPage;
     @BeforeEach
     public void setup(){
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver n'est pas initialisé !");
+        }
+        
         //driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         LoginPage loginPage  = new LoginPage(driver);

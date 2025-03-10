@@ -16,6 +16,9 @@ public class ClientCheckoutInformationSendTest extends BaseTest{
     
     @BeforeEach
     public void setup(){
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver n'est pas initialisé !");
+        }
         //driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/checkout-step-one.html");
         LoginPage loginPage  = new LoginPage(driver);

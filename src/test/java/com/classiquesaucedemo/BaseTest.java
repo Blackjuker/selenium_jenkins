@@ -16,18 +16,19 @@ public class BaseTest {
     public void setup() {
         ChromeOptions options = new ChromeOptions();
 
-        // 🔹 Récupérer l'URL depuis une variable d'environnement
-        String gridUrl = System.getProperty("selenium.grid.url", "http://selenium-hub:4444");
+        // 🔹 Récupérer l'URL du Selenium Grid
+        String gridUrl = System.getProperty("selenium.grid.url", System.getenv("SELENIUM_GRID_URL"));
 
         if (gridUrl == null || gridUrl.isEmpty()) {
             gridUrl = "http://selenium-hub:4444"; // Valeur par défaut
         }
 
         try {
+            System.out.println("➡ Connexion à Selenium Grid: " + gridUrl);
             driver = new RemoteWebDriver(new URL(gridUrl), options);
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            throw new RuntimeException("L'URL du Selenium Grid est invalide !");
+            throw new RuntimeException("❌ URL du Selenium Grid invalide !");
         }
 
         driver.manage().window().maximize();

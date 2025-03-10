@@ -17,6 +17,9 @@ public class LoginTest extends BaseTest{
 
     @BeforeEach
     public void setup(){
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver n'est pas initialisé !");
+        }
        // driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         loginPage = new LoginPage(driver);
