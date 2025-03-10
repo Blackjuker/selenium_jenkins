@@ -19,28 +19,28 @@ public class BaseTest {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
 
-            // 🔹 Vérifier l'URL de Selenium Grid
+            
             String gridUrl = System.getProperty("selenium.grid.url", System.getenv("SELENIUM_GRID_URL"));
             if (gridUrl == null || gridUrl.isEmpty()) {
-                gridUrl = "http://172.18.0.4:4444/wd/hub"; // ✅ En local, utilise localhost
+                gridUrl = "http://172.18.0.4:4444/wd/hub"; // En local, utilise localhost
             }
 
-            String fullGridUrl = gridUrl + "/wd/hub";  // ✅ Ajoute `/wd/hub` obligatoirement
+            String fullGridUrl = gridUrl + "/wd/hub";  // Ajoute `/wd/hub` obligatoirement
             System.out.println("➡ [SETUP] Connexion à Selenium Grid: " + fullGridUrl);
 
             try {
                 driver = new RemoteWebDriver(new URL(fullGridUrl), options);
-                System.out.println("✅ [SETUP] WebDriver initialisé avec succès !");
+                System.out.println("[SETUP] WebDriver initialisé avec succès !");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-                throw new RuntimeException("❌ [SETUP] URL du Selenium Grid invalide !");
+                throw new RuntimeException("[SETUP] URL du Selenium Grid invalide !");
             } catch (Exception e) {
-                System.err.println("❌ [SETUP] Impossible de se connecter à Selenium Grid !");
+                System.err.println("[SETUP] Impossible de se connecter à Selenium Grid !");
                 e.printStackTrace();
-                throw new IllegalStateException("❌ WebDriver n'a pas pu être initialisé !");
+                throw new IllegalStateException("WebDriver n'a pas pu être initialisé !");
             }
         } else {
-            System.out.println("✅ [SETUP] WebDriver déjà initialisé !");
+            System.out.println("[SETUP] WebDriver déjà initialisé !");
         }
 
         driver.manage().window().maximize();
