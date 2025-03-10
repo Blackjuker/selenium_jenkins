@@ -39,11 +39,11 @@ pipeline {
             }
         }
 
-        stage('Publish Test Reports') {
-            steps {
-                junit '**/target/surefire-reports/*.xml'
-            }
-        }
+        // stage('Publish Test Reports') {
+        //     steps {
+        //         junit '**/target/surefire-reports/*.xml'
+        //     }
+        // }
     }
 
     // post {
