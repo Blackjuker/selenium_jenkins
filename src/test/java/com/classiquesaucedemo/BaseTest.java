@@ -14,21 +14,33 @@ public class BaseTest {
 
     @BeforeEach
     public void setup() {
-        ChromeOptions options = new ChromeOptions();
+        System.out.println("➡ [SETUP] Démarrage du WebDriver");
 
-        // 🔹 Récupérer l'URL du Selenium Grid
-        String gridUrl = System.getProperty("selenium.grid.url", System.getenv("SELENIUM_GRID_URL"));
+        if (driver == null) {
+            ChromeOptions options = new ChromeOptions();
 
-        if (gridUrl == null || gridUrl.isEmpty()) {
-            gridUrl = "http://selenium-hub:4444"; // Valeur par défaut
-        }
+            // 🔹 Vérifier l'URL de Selenium Grid
+            String gridUrl = System.getProperty("selenium.grid.url", System.getenv("SELENIUM_GRID_URL"));
+            if (gridUrl == null || gridUrl.isEmpty()) {
+                gridUrl = "http://localhost:4444"; // ✅ En local, utilise localhost
+            }
 
-        try {
-            System.out.println("➡ Connexion à Selenium Grid: " + gridUrl);
-            driver = new RemoteWebDriver(new URL(gridUrl), options);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("❌ URL du Selenium Grid invalide !");
+            String fullGridUrl = gridUrl + "/wd/hub";  // ✅ Ajoute `/wd/hub` obligatoirement
+            System.out.println("➡ [SETUP] Connexion à Selenium Grid: " + fullGridUrl);
+
+            try {
+                driver = new RemoteWebDriver(new URL(fullGridUrl), options);
+                System.out.println("✅ [SETUP] WebDriver initialisé avec succès !");
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("❌ [SETUP] URL du Selenium Grid invalide !");
+            } catch (Exception e) {
+                System.err.println("❌ [SETUP] Impossible de se connecter à Selenium Grid !");
+                e.printStackTrace();
+                throw new IllegalStateException("❌ WebDriver n'a pas pu être initialisé !");
+            }
+        } else {
+            System.out.println("✅ [SETUP] WebDriver déjà initialisé !");
         }
 
         driver.manage().window().maximize();
@@ -37,7 +49,9 @@ public class BaseTest {
     @AfterEach
     public void tearDown() {
         if (driver != null) {
+            System.out.println("➡ [TEARDOWN] Fermeture du WebDriver");
             driver.quit();
+            driver = null;  // ✅ Important pour éviter des sessions fantômes
         }
     }
 }

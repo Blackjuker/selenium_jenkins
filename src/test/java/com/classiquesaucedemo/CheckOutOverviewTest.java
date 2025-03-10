@@ -19,6 +19,7 @@ public class CheckOutOverviewTest extends BaseTest{
     ClientInformationPage clientInformationPage;
     @BeforeEach
     public void setup(){
+        super.setup();
         if (driver == null) {
             throw new IllegalStateException("❌ WebDriver n'est pas initialisé !");
         }
@@ -43,6 +44,7 @@ public class CheckOutOverviewTest extends BaseTest{
 
     @AfterEach
     public void tearDown(){
+        super.tearDown();
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {

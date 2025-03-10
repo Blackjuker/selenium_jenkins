@@ -19,6 +19,7 @@ public class ProduitTest extends BaseTest{
     // Définitions des Hooks
     @BeforeEach
     public void setup(){
+        super.setup();
         if (driver == null) {
             throw new IllegalStateException("❌ WebDriver n'est pas initialisé !");
         }
@@ -32,7 +33,9 @@ public class ProduitTest extends BaseTest{
 
     @AfterEach
     public void tearDown(){
+        super.tearDown();
         try{
+            
             Thread.sleep(3000);
         }catch(Exception ex){
 
