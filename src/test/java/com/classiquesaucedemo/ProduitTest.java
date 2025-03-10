@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 @Tag("TestProduit")
 public class ProduitTest extends BaseTest{
     
-    private WebDriver driver;
+   // private WebDriver driver;
     private ProductPage productPage;
     private LoginPage loginPage;
     // Définitions des Hooks

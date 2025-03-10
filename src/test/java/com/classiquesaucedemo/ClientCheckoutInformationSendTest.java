@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 public class ClientCheckoutInformationSendTest extends BaseTest{
 
-    private WebDriver driver;
+    //private WebDriver driver;
     private ClientInformationPage clientInformationPage;
     
     @BeforeEach

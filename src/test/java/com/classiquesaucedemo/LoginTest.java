@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 @Tag("LoginTest")
 public class LoginTest extends BaseTest{
 
-    private WebDriver driver;
+    //private WebDriver driver;
     private LoginPage  loginPage;
 
     @BeforeEach

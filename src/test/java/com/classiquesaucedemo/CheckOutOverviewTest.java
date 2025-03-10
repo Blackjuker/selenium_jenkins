@@ -14,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 
 public class CheckOutOverviewTest extends BaseTest{
 
-    WebDriver driver;
+    //WebDriver driver;
     CheckOutOverview checkOutOverview;
     ClientInformationPage clientInformationPage;
     @BeforeEach
