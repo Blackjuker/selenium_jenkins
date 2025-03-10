@@ -27,17 +27,17 @@ pipeline {
                 sh 'mvn test -Dselenium.grid.url=$SELENIUM_GRID_URL'
             }
         }
-         stage('Generate Allure Report') {
-            steps {
-                sh 'mvn allure:report'
-            }
-        }
+        //  stage('Generate Allure Report') {
+        //     steps {
+        //         sh 'mvn allure:report'
+        //     }
+        // }
 
-        stage('Publish Allure Report') {
-            steps {
-                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
-            }
-        }
+        // stage('Publish Allure Report') {
+        //     steps {
+        //         allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+        //     }
+        // }
 
         // stage('Publish Test Reports') {
         //     steps {
