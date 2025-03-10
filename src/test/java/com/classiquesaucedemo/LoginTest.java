@@ -6,18 +6,18 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.jupiter.api.Test;
 
 @Tag("LoginTest")
-public class LoginTest {
+public class LoginTest extends BaseTest{
 
     private WebDriver driver;
     private LoginPage  loginPage;
 
     @BeforeEach
     public void setup(){
-        driver = new ChromeDriver();
+       // driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         loginPage = new LoginPage(driver);
 

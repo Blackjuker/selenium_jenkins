@@ -10,16 +10,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
 
-public class CheckOutOverviewTest {
+public class CheckOutOverviewTest extends BaseTest{
 
     WebDriver driver;
     CheckOutOverview checkOutOverview;
     ClientInformationPage clientInformationPage;
     @BeforeEach
     public void setup(){
-        driver = new ChromeDriver();
+        //driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         LoginPage loginPage  = new LoginPage(driver);
         loginPage.SeConnecterAvecLeUsernameEtPasswordValid("standard_user", "secret_sauce");

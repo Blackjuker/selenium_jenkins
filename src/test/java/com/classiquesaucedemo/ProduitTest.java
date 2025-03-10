@@ -3,7 +3,7 @@ package com.classiquesaucedemo;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 @Tag("TestProduit")
-public class ProduitTest {
+public class ProduitTest extends BaseTest{
     
     private WebDriver driver;
     private ProductPage productPage;
@@ -19,7 +19,7 @@ public class ProduitTest {
     // Définitions des Hooks
     @BeforeEach
     public void setup(){
-        driver = new ChromeDriver();
+        //driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         loginPage  = new LoginPage(driver);
         loginPage.SeConnecterAvecLeUsernameEtPasswordValid("standard_user", "secret_sauce");

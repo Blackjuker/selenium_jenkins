@@ -1,20 +1,17 @@
 pipeline {
-    agent {
-        docker {
-            image 'selenium/standalone-chrome:latest'
-        }
-    }
+    agent any
 
     environment {
-        BROWSER = "chrome"
+        SELENIUM_GRID_URL = "http://selenium-hub:4444"  // 🔹 Utilise bien Selenium Grid dans Docker
     }
 
     stages {
-       stage('test maven'){
-            steps{
-                sh "mvn --version"
-            }
-       }
+        // stage('Checkout') {
+        //     steps {
+        //         git branch: 'main', url: 'https://github.com/ton-repo/ton-projet.git'
+        //     }
+        // }
+
         stage('Install Dependencies') {
             steps {
                 sh 'mvn clean install -DskipTests'
@@ -23,7 +20,7 @@ pipeline {
 
         stage('Run Selenium Tests') {
             steps {
-                sh 'mvn test'
+                sh 'mvn test -Dselenium.grid.url=$SELENIUM_GRID_URL'
             }
         }
 
@@ -39,7 +36,7 @@ pipeline {
             archiveArtifacts artifacts: '**/target/surefire-reports/', fingerprint: true
         }
         failure {
-            echo "Les tests Selenium ont échoué."
+            echo "❌ Les tests Selenium ont échoué."
         }
     }
 }
