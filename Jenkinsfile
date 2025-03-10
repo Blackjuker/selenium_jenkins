@@ -46,21 +46,21 @@ pipeline {
         // }
     }
 
-    // post {
-    //     always {
-    //         archiveArtifacts artifacts: '**/target/surefire-reports/', fingerprint: true
-    //     }
-    //     failure {
-    //         echo "❌ Les tests Selenium ont échoué."
-    //     }
-    // }
     post {
         always {
-            archiveArtifacts artifacts: '**/target/allure-results/', fingerprint: true
+            archiveArtifacts artifacts: '**/target/surefire-reports/', fingerprint: true
         }
         failure {
             echo "❌ Les tests Selenium ont échoué."
         }
     }
+    // post {
+    //     always {
+    //         archiveArtifacts artifacts: '**/target/allure-results/', fingerprint: true
+    //     }
+    //     failure {
+    //         echo "❌ Les tests Selenium ont échoué."
+    //     }
+    // }
     
 }
